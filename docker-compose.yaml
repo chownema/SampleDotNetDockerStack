@@ -1,0 +1,17 @@
+version: "3"
+services:
+    web:
+        volumes:
+            - ./:/app
+        build: .
+        ports:
+            - "8001:8001"
+            - "8000:8000"
+        depends_on:
+            - db
+        command: "dotnet watch run --no-restore"
+    db:
+        image: "mcr.microsoft.com/mssql/server"
+        environment:
+            SA_PASSWORD: "Your_password123"
+            ACCEPT_EULA: "Y"
